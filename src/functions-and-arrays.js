@@ -115,14 +115,34 @@ const wordsUnique = [
   'bring'
 ];
 
-function uniquifyArray() {}
+function uniquifyArray(originalArr) {
+  if (originalArr.length === 0) {
+    return null;
+  }
+  const uniquesArr = [];
+  originalArr.forEach((item) => {
+    if(!uniquesArr.includes(item)) {
+      uniquesArr.push(item);
+    }
+  })
+  return uniquesArr;
+}
 
 
 
 // Iteration #6: Find elements
 const wordsFind = ['machine', 'subset', 'trouble', 'starting', 'matter', 'eating', 'truth', 'disobedience'];
 
-function doesWordExist() {}
+function doesWordExist(wordsArr, targetWord) {
+  if (wordsArr.length === 0) {
+    return null;
+  }
+  if (wordsArr.includes(targetWord)) {
+    return true;
+  } else {
+    return false;
+  }
+}
 
 
 
@@ -141,7 +161,15 @@ const wordsCount = [
   'matter'
 ];
 
-function howManyTimes() {}
+function howManyTimes(wordsArr, targetWord) {
+  let repetitions = 0;
+  for (let word of wordsArr) {
+    if (word === targetWord) {
+      repetitions++;
+    }
+  }
+  return repetitions;
+}
 
 
 
@@ -169,7 +197,33 @@ const matrix = [
   [1, 70, 54, 71, 83, 51, 54, 69, 16, 92, 33, 48, 61, 43, 52, 1, 89, 19, 67, 48]
 ];
 
-function greatestProduct() {}
+function greatestProduct(matrix) {
+  // Assume square matrix
+  let greatestProduct = 1;
+  for (let i = 0; i < matrix.length; i++) {
+    for (let j = 0; j < matrix[0].length; j++) {
+      let rowProduct = 1;
+      let colProduct = 1;
+      for (let k = 0; k <= 3; k++) {
+        // Check row forward
+        if (j + k <= matrix[0].length) {
+          rowProduct *= matrix[i][j+k];
+        }
+        // Check column downward
+        if (i + k < matrix.length) {
+          colProduct *= matrix[i + k][j];
+        }
+      }
+      if (rowProduct > greatestProduct) {
+        greatestProduct = rowProduct;
+      }
+      if (colProduct > greatestProduct) {
+        greatestProduct = colProduct;
+      }
+    }
+  }
+  return greatestProduct;
+}
 
 
 
